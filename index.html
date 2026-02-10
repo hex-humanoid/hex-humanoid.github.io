@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>HEX</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+		<link rel="icon" href="images/logo.ico" type="image/x-icon">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* 1. 强制让 intro 容器变成相对定位，并确保它是透明的 */
+			#intro {
+				position: relative !important;
+				background: transparent !important; /* 必须透明，否则会被原有的背景色遮挡 */
+				overflow: hidden;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				z-index: 1;
+			}
+
+			/* 2. 强制视频填满整个背景 */
+			#bg-video {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover; /* 关键：确保视频铺满不留黑边 */
+				z-index: -1;      /* 关键：把视频推到最底层 */
+			}
+
+			/* 3. 确保文字是白色且在最上层 */
+			#intro h1, #intro p, #intro .actions {
+				position: relative;
+				z-index: 2;
+				color: #ffffff !important;
+			}
+
+			#intro::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				/* 径向渐变：中间稍深，向四周扩散变浅 */
+				background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+				z-index: 1;
+			}
+
+			.video-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);  /* 三列 */
+				gap: 20px;  /* 视频间距 */
+				width: 100%;
+			}
+			.video-item {
+				text-align: center;
+			}
+			.video-container video {
+				width: 100%;
+				border-radius: 8px;
+			}
+			.video-caption {
+				margin-top: 8px;
+				font-size: 14px;
+			}
+			.video-container video {
+				width: 100%;
+				height: auto;
+				display: block; /* 去除默认 inline-block 的空隙 */
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<!-- <img src="images/logo.png" alt="HEX logo" width="480"> -->
+						<video autoplay muted loop playsinline id="bg-video">
+							<source src="videos/cover.mp4" type="video/mp4">
+							您的浏览器不支持 HTML5 视频。
+    					</video>
+						<h1>HEX</h1>
+						<p>Humanoid-Aligned Experts for Whole-Body Manipulation<br /></p>
+						<!-- <h5>NeurIPS 2025<br /></h5> -->
+						<!-- <p><a href="" target="_blank">X-humanoid Team<sup>1</sup></a></p> -->
+						<!-- <p style="font-size: 0.8rem;"><sup>1</sup>Beijing Innovation Center of Humanoid Robotics<br /> -->
+						<!-- <sup>†</sup>Equal contribution. <sup>§</sup>Project lead. <sup>*</sup>Corresponding author.</p> -->
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">HEX</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">HEX</a></li>
+							<!-- <li><a href="hex-exp.html">HEX-Exp</a></li> -->
+						</ul>
+						<!-- <ul class="icons">
+							<li><a href=" class="icon brands" target="_blank"><i class="ai ai-arxiv"><span> arXiv</span></i></a></li>
+							<li><a href="" class="icon brands" target="_blank"><i class="fab fa-github"><span> Code</span></i></a></li>
+							<li><a href="" class="icon brands" target="_blank"><i class="far fa-smile-beam"><span> Model</span></i></a></li>
+						</ul> -->
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<div class="image main"><img src="images/teaser.png" alt="" style="width: 90%; margin: 0 auto; display: block;" /></div>
+								<p class="image-caption" style="text-align: center"><strong>Overview.</strong></p>
+
+								<header class="major">
+									<!-- <h3>Abstract</h3> -->
+									<p style="text-align: left">
+										Humanoid control requires jointly reasoning about high-level task semantics and stability-critical internal dynamics. However, existing vision-language-action (VLA) models typically condition action generation on instantaneous observations through a single attention pathway, leading to temporally inconsistent and unstable behaviors, especially under action chunking and embodiment shift.
+										We propose HEX, a humanoid-aligned part-based state representation with a lightweight mixture-of-experts state prediction module that decouples embodiment-specific kinematics from shared temporal dynamics, enabling effective cross-embodiment pretraining.
+									Built on this design, HEX achieves robust and transferable humanoid control across diverse embodiments and real-world tasks.
+									</p>
+								</header>
+							</article>
+
+							<article class="post featured">
+								<header class="major">
+									<h3>Model Architeture of HEX</h3>
+									<p style="text-align: left"></p>
+								</header>
+								<div class="image main"><img src="images/model.png" style="width: 70%; margin: 0 auto; display: block;" alt="" /></div>
+								<p class="image-caption" style="text-align: center"><strong>Schematic of HEX framework.</strong></p>
+
+								<ul style="text-align: left">
+									HEX is a humanoid-aligned VLA framework that introduces retrospective execution context and prospective dynamic conditioning for robust cross-embodiment control. HEX employs a dual cross-attention action head that separately attends to visual-semantic representations from a vision–language model and short-horizon dynamic cues derived from future state prediction. A residual gating mechanism adaptively fuses the two branches, allowing the policy to balance semantic intent and dynamic feasibility based on the robot's condition, while a subsequent self-attention layer enforces temporal coherence across the action sequence.
+									To enable cross-embodiment transfer, HEX represents humanoid states using part-based abstractions with a lightweight mixture-of-experts for embodiment alignment and pretraining across heterogeneous platforms. 
+									<!-- Experiments on real humanoid tasks demonstrate that HEX significantly improves motion stability and smoothness in fast and contact-rich scenarios, without relying on full world models or per-step replanning. -->
+								</ul>
+							</article>
+
+							<article class="post featured">
+								<header class="major">
+									<h3>Real-world Demos</h3>
+								</header>
+
+								<div class="video-grid">
+        
+									<div class="video-item">
+										<div class="video-container">
+											<video controls autoplay muted loop playsinline>
+												<source src="videos/pour_wine_follow_finger.mp4" type="video/mp4">
+											</video>
+										</div>
+										<p class="video-caption"><strong>Pour liquor while following human order</strong>: pour liquor into the cup that the finger is pointing to</p>
+									</div>
+
+									<div class="video-item">
+										<div class="video-container">
+											<video controls autoplay muted loop playsinline>
+												<source src="videos/imitate_pose.mp4" type="video/mp4">
+											</video>
+										</div>
+										<p class="video-caption"><strong>Mirror the human's pose:</strong> spelling "V", "L", "A" in any order</p>
+									</div>
+
+									<div class="video-item">
+										<div class="video-container">
+											<video controls autoplay muted loop playsinline>
+												<source src="videos/convey_box.mp4" type="video/mp4">
+											</video>
+										</div>
+										<p class="video-caption"><strong>Long-horizon box convey:</strong> move the box from one table to the other</p>
+									</div>
+
+									<div class="video-item">
+										<div class="video-container">
+											<video controls autoplay muted loop playsinline>
+												<source src="videos/obstacle_avoidance.mp4" type="video/mp4">
+											</video>
+										</div>
+										<p class="video-caption"><strong>Walking while avoiding obstacle:</strong> immediately halt motion when a person or a goods cart passes by</p>
+									</div>
+
+									<div class="video-item">
+										<div class="video-container">
+											<video controls autoplay muted loop playsinline>
+												<source src="videos/tidy_table_follow_human.mp4" type="video/mp4">
+											</video>
+										</div>
+										<p class="video-caption"><strong>Human assistant:</strong> tracking human and hand over the box</p>
+									</div>
+
+									<div class="video-item">
+										<div class="video-container">
+											<video controls autoplay muted loop playsinline>
+												<source src="videos/place_cubes.mp4" type="video/mp4">
+											</video>
+										</div>
+										<p class="video-caption"><strong>Kneel and manipulate the objects:</strong> complete the tidying task despite arbitrary disturbances</p>
+									</div>
+								
+							</article>
+
+							
+							<article class="post featured">
+								<header class="major">
+									<h3>More details comming soon ...</h3>
+								</header>
+							</article>
+							
+					</div>
+
+				<!-- Footer -->
+					<!-- <footer id="footer">
+						<section>
+							<h4>BibTex</h4>
+							<pre style="white-space: pre-wrap; word-wrap: break-word; overflow-x: auto;"><code>@article{,
+							author       = { and  and  and  and  and  and  and },
+							title        = {},
+							volume       = {abs/},
+							year         = {2025},
+							}</code></pre>
+						</section>
+					</footer> -->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<span id="busuanzi_container_site_pv">Total visit:<span id="busuanzi_value_site_pv"></span></span>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+	</body>
+</html>
