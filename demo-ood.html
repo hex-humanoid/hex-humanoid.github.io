@@ -1,0 +1,594 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Method</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<style>
+			html, body {
+				background: #eef5ff !important;
+			}
+
+			#wrapper {
+				background: #eef5ff !important;
+			}
+
+			#nav {
+				background: #5f6b7a !important;
+			}
+
+			#nav .links li a,
+			#nav .icons a {
+				color: #ffffff !important;
+			}
+
+			#nav .links li.active {
+				background: #ffffff !important;
+			}
+
+			#nav .links li.active a {
+				color: #243447 !important;
+			}
+
+			#main {
+				background: #f8fbff !important;
+				padding: 4rem 0 !important;
+				width: 100% !important;
+				max-width: none !important;
+				margin: 0 !important;
+			}
+
+			.post,
+			.post.featured {
+				background: #ffffff !important;
+				width: calc(100% - 6rem) !important;
+				margin: 0 auto 2rem auto !important;
+				border-radius: 16px;
+				box-shadow: 0 8px 24px rgba(47, 84, 120, 0.08);
+			}
+
+			h1, h2, h3, h4, h5, h6,
+			p {
+				color: #243447 !important;
+			}
+			
+			/* 1. 强制让 intro 容器变成相对定位，并确保它是透明的 */
+			#intro {
+				position: relative !important;
+				background: transparent !important; /* 必须透明，否则会被原有的背景色遮挡 */
+				overflow: hidden;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				z-index: 1;
+			}
+
+			/* 2. 强制视频填满整个背景 */
+			#bg-video {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover; /* 关键：确保视频铺满不留黑边 */
+				z-index: -1;      /* 关键：把视频推到最底层 */
+			}
+
+			/* 3. 确保文字是白色且在最上层 */
+			#intro h1, #intro p, #intro .actions {
+				position: relative;
+				z-index: 2;
+				color: #ffffff !important;
+			}
+
+			#intro::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%); 		
+				z-index: 1;
+			}
+			
+			.video-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);  /* 三列 */
+				gap: 20px;  /* 视频间距 */
+				width: 100%;
+			}
+			.video-item {
+				text-align: center;
+			}
+			.video-container video {
+				width: 100%;
+				border-radius: 8px;
+			}
+			.video-caption {
+				margin-top: 8px;
+				font-size: 14px;
+			}
+			.video-container video {
+				width: 100%;
+				height: auto;
+				display: block; /* 去除默认 inline-block 的空隙 */
+			}
+			.video-wrapper {
+				width: 100%;
+				background: #dfeaf7;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			/* my */
+
+			body {
+			margin: 0;
+			font-family: Georgia, serif;
+			background: #ece7df;
+			}
+
+			.carousel-section {
+			position: relative;
+			width: 100%;
+			max-width: 1400px;
+			margin: 40px auto;
+			overflow: hidden;
+			padding: 20px 0;
+			}
+
+			.carousel {
+				position: relative;
+				height: 640px;
+			}
+
+			.card {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				width: 760px;
+				max-width: 78vw;
+				background: #f8fbff;
+				border-radius: 28px;
+				box-shadow: 0 20px 50px rgba(47, 84, 120, 0.10);
+				overflow: hidden;
+				transform: translateX(-50%) scale(0.82);
+				opacity: 0.35;
+				transition: all 0.45s ease;
+				pointer-events: none;
+			}
+
+			.card video {
+				width: 100%;
+				max-height: 430px;
+				height: auto;
+				display: block;
+				object-fit: contain;
+				background: #dfeaf7;
+			}
+
+			.card-content {
+				padding: 22px 28px 30px;
+			}
+
+			.card-content h3 {
+				margin: 12px 0 8px;
+				font-size: 22px;
+				color: #243447;
+			}
+
+			.card-content p {
+				margin: 0;
+				font-size: 16px;
+				color: #5f6b7a;
+				text-transform: none !important;
+			}
+
+			.tag {
+				display: inline-block;
+				padding: 6px 14px;
+				border: 1px solid #d6e2f0;
+				border-radius: 999px;
+				font-size: 12px;
+				letter-spacing: 0.08em;
+				color: #7a8da6;
+				background: #f7fbff;
+			}
+
+			.card.active {
+				transform: translateX(-50%) scale(1);
+				opacity: 1;
+				z-index: 3;
+				pointer-events: auto;
+			}
+
+			.card.left {
+				transform: translateX(-125%) scale(0.82);
+				opacity: 0.45;
+				z-index: 2;
+			}
+
+			.card.right {
+				transform: translateX(25%) scale(0.82);
+				opacity: 0.45;
+				z-index: 2;
+			}
+
+			.card.hidden-left {
+				transform: translateX(-190%) scale(0.72);
+				opacity: 0;
+				z-index: 1;
+			}
+
+			.card.hidden-right {
+				transform: translateX(90%) scale(0.72);
+				opacity: 0;
+				z-index: 1;
+			}
+
+			.nav-btn {
+				position: absolute;
+				top: 220px;
+				width: 64px;
+				height: 64px;
+				padding: 0;
+				border: none;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.92);
+				box-shadow: 0 8px 24px rgba(47, 84, 120, 0.12);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 38px;
+				line-height: 1;
+				text-align: center;
+				cursor: pointer;
+				z-index: 10;
+				transform: translateY(-50%);
+				color: #243447;
+				appearance: none;
+				-webkit-appearance: none;
+			}
+
+			.nav-btn.left {
+				left: 20px;
+			}
+
+			.nav-btn.right {
+				right: 20px;
+			}
+
+			.nav-btn:hover {
+				background: #ffffff;
+			}
+
+		</style>
+
+		<script>
+		document.addEventListener('DOMContentLoaded', function () {
+		const sections = document.querySelectorAll('.carousel-section');
+
+		sections.forEach((section) => {
+			const cards = section.querySelectorAll('.carousel .card');
+			const prevBtn = section.querySelector('.nav-btn.left');
+			const nextBtn = section.querySelector('.nav-btn.right');
+
+			if (!cards.length || !prevBtn || !nextBtn) return;
+
+			let current = Array.from(cards).findIndex(card => card.classList.contains('active'));
+			if (current < 0) current = 0;
+
+			// 兼容原本写了 src 的情况，自动备份到 data-src
+			cards.forEach((card) => {
+			const source = card.querySelector('video source');
+			if (!source) return;
+
+			if (!source.dataset.src && source.getAttribute('src')) {
+				source.dataset.src = source.getAttribute('src');
+			}
+			});
+
+			function ensureVideoLoaded(card) {
+			const video = card.querySelector('video');
+			const source = card.querySelector('video source');
+			if (!video || !source) return { video: null, source: null };
+
+			const realSrc = source.dataset.src;
+			if (!realSrc) return { video, source };
+
+			if (source.getAttribute('src') !== realSrc) {
+				source.setAttribute('src', realSrc);
+				video.load();
+			}
+
+			return { video, source };
+			}
+
+			function unloadVideo(card) {
+			const video = card.querySelector('video');
+			const source = card.querySelector('video source');
+			if (!video || !source) return;
+
+			video.pause();
+			source.removeAttribute('src');
+			video.load();
+			}
+
+			function updateVideos() {
+			cards.forEach((card) => {
+				const isActive = card.classList.contains('active');
+				const isSide =
+				card.classList.contains('left') ||
+				card.classList.contains('right');
+
+				if (isActive || isSide) {
+				const { video } = ensureVideoLoaded(card);
+				if (!video) return;
+
+				if (isActive) {
+					const playPromise = video.play();
+					if (playPromise && typeof playPromise.catch === 'function') {
+					playPromise.catch(() => {});
+					}
+				} else {
+					video.pause();
+					try {
+					video.currentTime = 0;
+					} catch (e) {}
+				}
+				} else {
+				unloadVideo(card);
+				}
+			});
+			}
+
+			function updateCarousel() {
+			cards.forEach((card, index) => {
+				card.classList.remove('active', 'left', 'right', 'hidden-left', 'hidden-right');
+
+				if (index === current) {
+				card.classList.add('active');
+				} else if (index === (current - 1 + cards.length) % cards.length) {
+				card.classList.add('left');
+				} else if (index === (current + 1) % cards.length) {
+				card.classList.add('right');
+				} else if (index < current || (current === 0 && index === cards.length - 1)) {
+				card.classList.add('hidden-left');
+				} else {
+				card.classList.add('hidden-right');
+				}
+			});
+
+			updateVideos();
+			}
+
+			prevBtn.addEventListener('click', function () {
+			current = (current - 1 + cards.length) % cards.length;
+			updateCarousel();
+			});
+
+			nextBtn.addEventListener('click', function () {
+			current = (current + 1) % cards.length;
+			updateCarousel();
+			});
+
+			updateCarousel();
+		});
+		});
+	</script>
+
+
+
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="method.html" class="logo">Demo-OOD</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Demo</a></li>
+							<li class="active"><a href="demo-ood.html">Demo-OOD</a></li>
+							<li><a href="method.html">Method</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="" class="icon brands" target="_blank"><i class="ai ai-arxiv"><span> arXiv</span></i></a></li>
+							<li><a href="" class="icon brands" target="_blank"><i class="fab fa-github"><span> Code (Coming soon)</span></i></a></li>
+							<!-- <li><a href="" class="icon brands" target="_blank"><i class="far fa-smile-beam"><span> Model</span></i></a></li> -->
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<article class="post featured">
+								<header class="major">
+									<h3>Real-world Demos in Unseen Scenarios</h3>
+								</header>
+
+								<header class="major" style="margin-bottom: 0.8rem;">
+									<h4 style="margin-bottom: -20pt;">Tienkung 2.0 Experiments</h4>
+								</header>
+
+								<div class="carousel-section">
+									<button class="nav-btn left">&#10094;</button>
+
+									<div class="carousel">
+										<div class="card active">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/imitate_pose_human_disturbance.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 2.0</span>
+												<h3>Mirror the Human's Pose</h3>
+												<p>With human disturbance.</p>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/imitate_pose_quick_switch.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 2.0</span>
+												<h3>Mirror the Human's Pose</h3>
+												<p>Switch poses more quickly.</p>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/pour_wine_follow_finger_with_distractors.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 2.0</span>
+												<h3>Pour Liquor While Following Human Order</h3>
+												<p>With distractors.</p>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/pour_wine_follow_finger_different_position.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 2.0</span>
+												<h3>Pour Liquor While Following Human Order</h3>
+												<p>Liquor bottles in different positions.</p>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/convey_box_unseen_lights.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 2.0</span>
+												<h3>Long-Horizon Box Convey</h3>
+												<p>With unseen lights.</p>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/convey_box_unseen_objects.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 2.0</span>
+												<h3>Long-Horizon Box Convey</h3>
+												<p>With unseen objects.</p>
+											</div>
+										</div>
+
+
+									</div>
+
+									<button class="nav-btn right">&#10095;</button>
+								</div>
+
+
+								<header class="major" style="margin-bottom: 0.8rem;">
+									<h4 style="margin-bottom: -20pt; margin-top: 50pt;">Tienkung 3.0 Experiments</h4>
+								</header>
+
+								<div class="carousel-section">
+									<button class="nav-btn left">&#10094;</button>
+
+									<div class="carousel">
+										<div class="card active">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/put_cube_in_box_dynamic.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 3.0</span>
+												<h3>Kneel and Manipulate the Objects</h3>
+												<p>Dynamic positions.</p>
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="video-wrapper">
+												<video controls muted preload="none" playsinline>
+													<source data-src="videos/unseen/put_cube_in_box_ball.mp4" type="video/mp4">
+												</video>
+											</div>
+											<div class="card-content">
+												<span class="tag">Tienkung 3.0</span>
+												<h3>Kneel and Manipulate the Objects</h3>
+												<p>Replace blocks with balls.</p>
+											</div>
+										</div>
+
+									</div>
+
+									<button class="nav-btn right">&#10095;</button>
+								</div>
+
+					</div>
+
+				<!-- Footer -->
+				<!-- <footer id="footer">
+					<section>
+						<h4>BibTex</h4>
+						<pre style="white-space: pre-wrap; word-wrap: break-word; overflow-x: auto;"><code>
+							@article{,
+								author       = { and  and  and  and  and  and  and },
+								title        = {},
+								volume       = {abs/},
+								year         = {2025},
+							}
+						</code></pre>
+					</section>
+				</footer> -->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<span id="busuanzi_container_site_pv">Total visit:<span id="busuanzi_value_site_pv"></span></span>
+					</div>
+			</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+	</body>
+</html>

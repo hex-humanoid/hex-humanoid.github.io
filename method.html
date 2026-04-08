@@ -1,0 +1,669 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Method</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+
+	<style>
+		html, body {
+			background: #eef5ff !important;
+		}
+
+		#wrapper {
+			background: #eef5ff !important;
+		}
+
+		#nav {
+			background: #5f6b7a !important;
+		}
+
+		#nav .links li a,
+		#nav .icons a {
+			color: #ffffff !important;
+		}
+
+		#nav .links li.active {
+			background: #ffffff !important;
+		}
+
+		#nav .links li.active a {
+			color: #243447 !important;
+		}
+
+		#main {
+			background: #f8fbff !important;
+			padding: 4rem 0 !important;
+			width: 100% !important;
+			max-width: none !important;
+			margin: 0 !important;
+		}
+
+		.post,
+		.post.featured {
+			background: #ffffff !important;
+			width: calc(100% - 6rem) !important;
+			margin: 0 auto 2rem auto !important;
+			border-radius: 16px;
+			box-shadow: 0 8px 24px rgba(47, 84, 120, 0.08);
+		}
+
+		h1, h2, h3, h4, h5, h6,
+		p {
+			color: #243447 !important;
+		}
+		
+		/* 1. 强制让 intro 容器变成相对定位，并确保它是透明的 */
+		#intro {
+			position: relative !important;
+			background: transparent !important; /* 必须透明，否则会被原有的背景色遮挡 */
+			overflow: hidden;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			z-index: 1;
+		}
+
+		/* 2. 强制视频填满整个背景 */
+		#bg-video {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover; /* 关键：确保视频铺满不留黑边 */
+			z-index: -1;      /* 关键：把视频推到最底层 */
+		}
+
+		/* 3. 确保文字是白色且在最上层 */
+		#intro h1, #intro p, #intro .actions {
+			position: relative;
+			z-index: 2;
+			color: #ffffff !important;
+		}
+
+		#intro::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%); 		
+			z-index: 1;
+		}
+		
+		.video-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);  /* 三列 */
+			gap: 20px;  /* 视频间距 */
+			width: 100%;
+		}
+		.video-item {
+			text-align: center;
+		}
+		.video-container video {
+			width: 100%;
+			border-radius: 8px;
+		}
+		.video-caption {
+			margin-top: 8px;
+			font-size: 14px;
+		}
+		.video-container video {
+			width: 100%;
+			height: auto;
+			display: block; /* 去除默认 inline-block 的空隙 */
+		}
+
+		.teaser-block {
+		padding-top: 1.2rem !important;
+		padding-bottom: 1.2rem !important;
+		}
+
+		.teaser-image {
+		margin: 0 0 0.45rem 0 !important;
+		}
+
+		.teaser-image img {
+		width: 30%;
+		margin: 0 auto;
+		display: block;
+		}
+
+		.teaser-caption {
+		margin: 0 0 0.55rem 0 !important;
+		text-align: center;
+		font-size: 1.1rem !important;
+		line-height: 1.2;
+		color: #243447 !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-weight: 700;
+		}
+
+		.teaser-text {
+		width: 80%;
+		margin: 0 auto;
+		}
+
+		.teaser-text p {
+		margin: 0 0 0.85rem 0 !important;
+		font-size: 0.9rem !important;
+		line-height: 1.75 !important;
+		text-align: left;
+		color: #3f4d5f !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-style: normal !important;
+		font-weight: 400 !important;
+		letter-spacing: 0 !important;
+		text-transform: none !important;
+		}
+
+		.teaser-text p:last-child {
+		margin-bottom: 0 !important;
+		}
+
+		.model-text {
+		width: 84%;
+		margin: -0.8rem auto 0 auto;   /* 往上收，贴近上面的图 */
+		}
+
+		.model-intro,
+		.model-outro {
+		width: 88%;
+		margin: 0 auto 0.9rem auto !important;
+		font-size: 0.98rem !important;
+		line-height: 1.7 !important;
+		text-align: center;
+		color: #4a5668 !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-style: normal !important;
+		font-weight: 400 !important;
+		letter-spacing: 0 !important;
+		text-transform: none !important;
+		}
+
+		.model-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 18px;
+		margin: 0.9rem 0 0.9rem 0;
+		align-items: stretch;
+		}
+
+		.model-card {
+		background: #fcfdff;
+		border: 1px solid #dfe7f2;
+		border-radius: 18px;
+		padding: 20px 20px 18px;
+		box-shadow: 0 6px 16px rgba(47, 84, 120, 0.05);
+		text-align: left;
+		}
+
+		.model-card h4 {
+		margin: 0 0 0.7rem 0;
+		font-size: 1.1rem;
+		line-height: 1.35;
+		color: #243447 !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-weight: 700 !important;
+		letter-spacing: 0.01em;
+		text-transform: none !important;
+		}
+
+		.model-card p {
+			margin: 0 !important;
+			font-size: 0.95rem !important;
+			line-height: 1.72 !important;
+			color: #566579 !important;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+			font-style: normal !important;
+			font-weight: 400 !important;
+			letter-spacing: 0 !important;
+			text-transform: none !important;
+
+			text-align: left !important;      /* 关键：不要两端对齐 */
+			text-justify: auto !important;
+			word-spacing: normal !important;  /* 恢复正常词间距 */
+			hyphens: none !important;
+		}
+
+		@media screen and (max-width: 980px) {
+		.model-text {
+			width: 92%;
+			margin-top: -0.2rem;
+		}
+
+		.model-intro,
+		.model-outro {
+			width: 96%;
+		}
+
+		.model-grid {
+			grid-template-columns: 1fr;
+			gap: 14px;
+		}
+		}
+
+		.analysis-grid {
+		width: 88%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+		}
+
+		.analysis-card {
+		background: #fcfdff;
+		border: 1px solid #dfe7f2;
+		border-radius: 20px;
+		padding: 22px 24px;
+		box-shadow: 0 8px 20px rgba(47, 84, 120, 0.06);
+		}
+
+		.analysis-card h4 {
+		margin: 0 0 1rem 0;
+		font-size: 1.15rem;
+		line-height: 1.3;
+		color: #243447 !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-weight: 700 !important;
+		text-transform: none !important;
+		text-align: left;
+		}
+
+		.analysis-image {
+		margin: 0 0 0.8rem 0 !important;
+		text-align: center;
+		}
+
+		.analysis-image img {
+		width: 82%;
+		margin: 0 auto;
+		display: block;
+		}
+
+		.analysis-image-small img {
+		width: 52%;
+		}
+
+		.analysis-text {
+		width: 88%;
+		margin: 0 auto;
+		}
+
+		.analysis-text p {
+		margin: 0 0 0.8rem 0 !important;
+		font-size: 0.95rem !important;
+		line-height: 1.72 !important;
+		color: #566579 !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-style: normal !important;
+		font-weight: 400 !important;
+		text-transform: none !important;
+		text-align: left !important;
+		word-spacing: normal !important;
+		letter-spacing: 0 !important;
+		}
+
+		.analysis-text p:last-child {
+		margin-bottom: 0 !important;
+		}
+
+		@media screen and (max-width: 980px) {
+		.analysis-grid {
+			width: 94%;
+			gap: 20px;
+		}
+
+		.analysis-card {
+			padding: 18px 16px;
+		}
+
+		.analysis-image img {
+			width: 100%;
+		}
+
+		.analysis-image-small img {
+			width: 65%;
+		}
+
+		.analysis-text {
+			width: 100%;
+		}
+		}
+
+		.result-grid {
+		width: 88%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+		}
+
+		.result-card {
+		background: #fcfdff;
+		border: 1px solid #dfe7f2;
+		border-radius: 20px;
+		padding: 22px 24px;
+		box-shadow: 0 8px 20px rgba(47, 84, 120, 0.06);
+		}
+
+		.result-card h4 {
+		margin: 0 0 1rem 0;
+		font-size: 1.15rem;
+		line-height: 1.3;
+		color: #243447 !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-weight: 700 !important;
+		text-transform: none !important;
+		text-align: left;
+		}
+
+		.result-image {
+		margin: 0 0 0.9rem 0 !important;
+		text-align: center;
+		}
+
+		.result-img-wide {
+		width: 82%;
+		margin: 0 auto;
+		display: block;
+		}
+
+		.result-img-small {
+		width: 42%;
+		margin: 0.8rem auto 0 auto;
+		display: block;
+		}
+
+		.result-img-medium {
+		width: 55%;
+		margin: 0 auto;
+		display: block;
+		}
+
+		.result-text {
+		width: 88%;
+		margin: 0 auto;
+		}
+
+		.result-text p {
+		margin: 0 0 0.8rem 0 !important;
+		font-size: 0.95rem !important;
+		line-height: 1.72 !important;
+		color: #566579 !important;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+		font-style: normal !important;
+		font-weight: 400 !important;
+		text-transform: none !important;
+		text-align: left !important;
+		word-spacing: normal !important;
+		letter-spacing: 0 !important;
+		}
+
+		.result-text p:last-child {
+		margin-bottom: 0 !important;
+		}
+
+		@media screen and (max-width: 980px) {
+		.result-grid {
+			width: 94%;
+			gap: 20px;
+		}
+
+		.result-card {
+			padding: 18px 16px;
+		}
+
+		.result-img-wide {
+			width: 100%;
+		}
+
+		.result-img-small {
+			width: 65%;
+		}
+
+		.result-img-medium {
+			width: 70%;
+		}
+}
+
+	</style>
+
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="method.html" class="logo">Method</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Demo</a></li>
+							<li><a href="demo-ood.html">Demo-OOD</a></li>
+							<li class="active"><a href="method.html">Method</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="" class="icon brands" target="_blank"><i class="ai ai-arxiv"><span> arXiv</span></i></a></li>
+							<li><a href="" class="icon brands" target="_blank"><i class="fab fa-github"><span> Code (Coming soon)</span></i></a></li>
+							<!-- <li><a href="" class="icon brands" target="_blank"><i class="far fa-smile-beam"><span> Model</span></i></a></li> -->
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post featured teaser-block">
+								<header class="major">
+									<h3>Overview</h3>
+								</header>
+								<div class="image main teaser-image">
+									<img src="images/teaser.png" alt="HEX overview" style="width: 80%; margin-top: -50pt"/>
+								</div>
+								<div class="teaser-text" style="margin-top: 15pt; margin-bottom: 10pt">
+									<p>
+									(a) HEX is a scalable humanoid whole-body VLA framework pretrained on diverse cross-embodiment humanoid trajectory data. Our training corpus contains over 12M frames from seven humanoid embodiments across four large-scale data sources. It covers diverse platforms, including Tienkung 2.0/3.0, Tienyi, Unitree G1/H1, AgiBot, and Leju. Although these datasets vary substantially in embodiment, sensing modalities, and action definitions, they can all be integrated into our cross-embodiment pretraining framework.
+									</p>
+									<p>
+									(b) HEX consists of a high-level VLA module and a low-level whole-body controller. The high-level module takes visual-language context and humanoid-aligned proprioceptive state as input, where the VLM encodes visual-language information and the Unified Proprioceptive Predictor (UPP) models structured whole-body state dynamics across body parts. Their features are integrated through dual cross-attention and residual-gated fusion for action generation. The resulting high-level actions directly control the arms and hands, while also serving as intermediate commands for the low-level controller to generate balance-preserving whole-body motions.
+									</p>
+								</div>
+							</article>
+
+
+							<article class="post featured">
+							<header class="major">
+								<h3>Model Architecture of HEX</h3>
+							</header>
+
+							<div class="image main">
+								<img src="images/model.png" style="width: 80%; margin: 0 auto; margin-top: -40pt; margin-bottom: -30pt; display: block;" alt="HEX model overview" />
+							</div>
+							<div class="image main">
+								<img src="images/model_details.png" style="width: 80%; margin: 0 auto; display: block;" alt="HEX model details" />
+							</div>
+
+								<div class="model-text">
+								<p class="model-intro">
+									HEX is a hierarchical humanoid whole-body manipulation framework for robust cross-embodiment control. It unifies semantic understanding, predictive proprioceptive modeling, and balance-preserving execution in a single architecture.
+								</p>
+
+								<div class="model-grid">
+									<div class="model-card">
+									<h4>VLM with History Query Cache</h4>
+									<p>
+										HEX encodes the current visual observation, language instruction, and recent semantic context with a lightweight history-query feature cache, preserving short-term temporal information without repeatedly processing long image histories.
+									</p>
+									</div>
+
+									<div class="model-card">
+									<h4>Unified Proprioceptive Predictor (UPP)</h4>
+									<p>
+										UPP organizes heterogeneous humanoid states into canonical body-part representations and predicts short-horizon future dynamics. A morphology-aware MoE enables adaptation across robots with different embodiments, sensors, and state definitions.
+									</p>
+									</div>
+
+									<div class="model-card">
+									<h4>Action Expert (AE)</h4>
+									<p>
+										The Action Expert generates high-level manipulation actions by jointly conditioning on visual-language features and predicted proprioceptive dynamics. Adaptive fusion balances semantic intent and dynamic feasibility for robust whole-body execution.
+									</p>
+									</div>
+								</div>
+
+								<p class="model-outro">
+									Together, these components enable HEX to transfer across heterogeneous humanoid platforms and perform robust whole-body manipulation in dynamic and contact-rich scenarios.
+								</p>
+								</div>
+							</article>
+
+
+							<article class="post featured teaser-block">
+								<header class="major">
+									<h3>Experiment Results</h3>
+								</header>
+
+								<div class="result-grid">
+
+									<div class="result-card">
+									<h4>Seen and Long-Horizon Scenarios</h4>
+
+									<div class="image main result-image">
+										<img src="images/seen_results.png" alt="Seen Results" class="result-img-wide" style="width: 82%; margin: 0 auto; display: block;" />
+										<img src="images/long-horizon_results.png" alt="Long-Horizon Results" class="result-img-small" style="width: 42%; margin: 0.8rem auto 0 auto; display: block;" />
+									</div>
+
+									<div class="result-text">
+										<p>
+										<strong>Seen Scenarios.</strong> In in-distribution settings, ACT and SwitchVLA remain competitive despite their smaller scale, while HEX achieves the best overall performance with a stronger balance between success rate, motion smoothness, and reactive execution.
+										</p>
+
+										<p>
+										<strong>Long-Horizon Scenarios.</strong> For multi-stage whole-body manipulation, HEX outperforms all baselines across every stage and shows especially strong gains in the final <em>Place Box</em> stage, indicating better stability and reduced cascading errors.
+										</p>
+									</div>
+									</div>
+
+									<div class="result-card">
+									<h4>Unseen Generalization</h4>
+
+									<div class="image main result-image">
+										<img src="images/unseen_results.png" alt="Unseen Results" class="result-img-medium" style="width: 55%; margin: 0 auto; display: block;" />
+									</div>
+
+									<div class="result-text">
+										<p>
+										<strong>Unseen Scenarios.</strong> Under diverse out-of-distribution shifts, HEX achieves the best overall generalization performance and outperforms all baselines on nearly all variants.
+										</p>
+
+										<p>
+										HEX remains robust under fast human motion, human interference, visual distractors, object-position changes, lighting variation, and dynamic scene changes. In particular, in the pouring task with distractors, all baselines collapse to 0% success and often mistake a red plate for the human pointing hand, while HEX avoids this failure mode and reaches 53.3% success.
+										</p>
+									</div>
+									</div>
+
+								</div>
+							</article>
+
+							<article class="post featured teaser-block">
+								<header class="major">
+									<h3>Analysis Experiments</h3>
+								</header>
+
+								<div class="analysis-grid">
+									<div class="analysis-card">
+										<h4>Ablation Study</h4>
+										<div class="image main analysis-image">
+											<img src="images/ablation.png" alt="HEX Ablation" />
+										</div>
+										<div class="analysis-text">
+											<p>
+											<strong>Ablation on Pretraining.</strong> In our single-task setting, pretraining mainly improves optimization efficiency rather than the final converged performance. It provides better initialization, lower early-stage losses, and much faster improvements in task success, while the gap becomes small after sufficient task-specific training.
+											</p>
+											<p>
+											<strong>Ablation on Model Components.</strong> Adding the VLM history cache, the Unified Proprioceptive Predictor (UPP), and the morphology-aware MoE leads to steady performance gains. The UPP has the strongest impact, showing that predictive proprioceptive modeling is a key factor behind HEX’s effectiveness.
+											</p>
+										</div>
+									</div>
+
+									<div class="analysis-card">
+										<h4>MoE Routing Analysis</h4>
+										<div class="image main analysis-image">
+											<img src="images/moe.png" alt="MoE Routing Analysis" />
+										</div>
+										<div class="analysis-text">
+											<p>
+											<strong>MoE Routing Analysis.</strong> Expert routing before the transformer remains largely stable, reflecting persistent body-part specialization, while routing after the transformer becomes strongly phase-dependent and tracks semantic subtask transitions more clearly. This suggests that post-transformer routing better captures the changing control demands of long-horizon whole-body manipulation.
+											</p>
+										</div>
+									</div>
+
+									<div class="analysis-card">
+										<h4>Latency Analysis</h4>
+										<div class="image main analysis-image analysis-image-small">
+											<img src="images/latency.png" alt="Latency Analysis" style="width: 50%; margin: 0 auto; display: block;" />
+										</div>
+										<div class="analysis-text">
+											<p>
+											<strong>Latency Analysis.</strong> HEX achieves the highest overall success rate (79.8%) with 73.34 ms latency on an RTX 4090, outperforming all baselines in task success while remaining faster than π0.5. This shows that HEX offers the strongest overall effectiveness under a practical inference budget.
+											</p>
+										</div>
+									</div>
+
+								</div>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+				<!-- <footer id="footer">
+					<section>
+						<h4>BibTex</h4>
+						<pre style="white-space: pre-wrap; word-wrap: break-word; overflow-x: auto;"><code>
+							@article{,
+								author       = { and  and  and  and  and  and  and },
+								title        = {},
+								volume       = {abs/},
+								year         = {2025},
+							}
+						</code></pre>
+					</section>
+				</footer> -->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<span id="busuanzi_container_site_pv">Total visit:<span id="busuanzi_value_site_pv"></span></span>
+					</div>
+			</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+	</body>
+</html>
